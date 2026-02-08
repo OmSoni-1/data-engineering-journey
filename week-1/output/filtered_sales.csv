@@ -1,0 +1,2 @@
+order_id,order_date,customer,product,amount,status
+102,2026-02-12,Alice,Keyboard,1200,Completed
