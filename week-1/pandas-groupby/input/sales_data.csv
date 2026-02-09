@@ -1,0 +1,9 @@
+order_id,order_date,customer,region,category,product,quantity,unit_price,total_amount,status
+101,2026-01-13,Alexa,North,Electronics,Gaming Console,1,2500,2500,Completed
+102,2026-02-12,Alice,South,Peripherals,Keyboard,2,600,1200,Completed
+103,2026-01-15,Bob,East,Peripherals,Mouse,4,200,800,Pending
+104,2025-11-20,Charlie,West,Electronics,Monitor,1,3000,3000,Completed
+105,2026-01-25,David,North,Electronics,Laptop,1,5000,5000,Cancelled
+106,2025-12-30,Eve,South,Office,Printer,1,1500,1500,Completed
+107,2026-02-01,Frank,East,Peripherals,Keyboard,1,600,600,Completed
+108,2026-02-05,Grace,West,Electronics,Laptop,2,5000,10000,Completed
