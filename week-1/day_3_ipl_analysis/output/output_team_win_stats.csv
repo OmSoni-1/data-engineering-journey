@@ -1,0 +1,121 @@
+team,wins,total_matches,win_percentage
+Mumbai Indians,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",69,57.97
+Royal Challengers Bengaluru,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",71,56.34
+Punjab Kings,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",75,54.67
+Lucknow Super Giants,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",79,54.43
+Sunrisers Hyderabad,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",62,51.61
+Delhi Capitals,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",84,50.0
+Gujarat Titans,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",74,50.0
+Kolkata Knight Riders,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",78,43.59
+Chennai Super Kings,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",78,41.03
+Rajasthan Royals,"winner
+Lucknow Super Giants           43
+Delhi Capitals                 42
+Punjab Kings                   41
+Royal Challengers Bengaluru    40
+Mumbai Indians                 40
+Gujarat Titans                 37
+Kolkata Knight Riders          34
+Chennai Super Kings            32
+Sunrisers Hyderabad            32
+Rajasthan Royals               19
+Name: count, dtype: int64",50,38.0
