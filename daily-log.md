@@ -76,3 +76,71 @@ Note: Reduced intensity due to fever. Focused on cleanup and structure. But I di
 **Tomorrow's goal:** Connecting Python to PostgreSQL
 
 -------------------------------------------------------------------------------------------
+
+## Day 4 – Environment-Based Configuration (dotenv)
+
+### What I Built
+- Introduced `.env` file for dynamic configuration
+- Removed hardcoded year and status filters
+- Made the sales pipeline environment-driven
+
+### Key Changes
+- Loaded environment variables using `python-dotenv`
+- Explicitly resolved `.env` path from repo root
+- Converted environment year filter to proper datetime
+- Fixed variable naming and load-order bugs
+
+### Debugging Lessons
+- Environment variables must be loaded before `os.getenv()`
+- Comparing datetime with string causes dtype errors
+- `Path.parent` vs `Path.parents` difference
+
+### Engineering Upgrade
+- Pipeline is now configurable
+- Logic separated from environment
+- Reduced hardcoding
+- More production-ready structure
+
+### Time Spent
+- ~60 minutes (including debugging and venv recovery)
+
+-------------------------------------------------------------------------------------------
+
+---
+
+## Day 5 – Consolidation & Modular Architecture
+
+### What I Did
+- Refactored sales pipeline into modular structure:
+  - `config.py` → environment handling
+  - `pipeline.py` → ETL logic
+  - `run.py` → execution entrypoint
+- Centralized environment variable loading
+- Enforced numeric validation for `DATA_YEAR`
+- Debugged import chain failure caused by config errors
+- Fixed logical date filtering bug (`>=` vs `==`)
+
+### Key Engineering Lessons
+- Module import chains fail silently if a dependency raises errors
+- Environment variables must be validated and type-casted
+- Separation of concerns improves maintainability
+- Refactoring often reveals hidden logical bugs
+- Running scripts from correct working directory matters
+
+### Conceptual Consolidation
+- ETL structure
+- dotenv configuration
+- pathlib usage
+- pandas date handling
+- Python module mechanics
+- Defensive validation
+
+### Why This Matters
+- Code is now scalable and production-ready
+- Cleaner architecture for future upgrades
+- Stronger debugging instincts developed
+
+### Time Spent
+- ~1 hour consolidation session
+
+-------------------------------------------------------------------------------------------
