@@ -6,6 +6,13 @@ envs/
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Logs
+logs/
+*.log
 
 # Jupyter
 .ipynb_checkpoints/
@@ -16,6 +23,11 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Test cache
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Data (optional)
 # datasets/
