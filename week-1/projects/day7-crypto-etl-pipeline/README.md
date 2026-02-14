@@ -73,9 +73,9 @@ CREATE TABLE crypto_prices (
     id SERIAL PRIMARY KEY,
     crypto_id VARCHAR(50) NOT NULL,
     crypto_name VARCHAR(100) NOT NULL,
-    price_usd DECIMAL(20, 2),
-    market_cap_usd BIGINT,
-    volume_24h_usd BIGINT,
+    price_inr DECIMAL(20, 2),
+    market_cap_inr BIGINT,
+    volume_24h_inr BIGINT,
     price_change_24h_pct DECIMAL(10, 2),
     price_category VARCHAR(20),
     is_positive_change BOOLEAN,
@@ -135,7 +135,7 @@ python run.py
 
 ### Get Latest Prices
 ```sql
-SELECT crypto_name, price_usd, price_change_24h_pct, extracted_at
+SELECT crypto_name, price_inr, price_change_24h_pct, extracted_at
 FROM crypto_prices
 ORDER BY extracted_at DESC
 LIMIT 5;
@@ -143,7 +143,7 @@ LIMIT 5;
 
 ### Find Biggest 24h Gainers
 ```sql
-SELECT crypto_name, price_usd, price_change_24h_pct
+SELECT crypto_name, price_inr, price_change_24h_pct
 FROM crypto_prices
 WHERE extracted_at >= NOW() - INTERVAL '1 day'
   AND is_positive_change = TRUE
@@ -154,9 +154,9 @@ ORDER BY price_change_24h_pct DESC;
 ```sql
 SELECT 
     DATE_TRUNC('hour', extracted_at) as hour,
-    AVG(price_usd) as avg_price,
-    MIN(price_usd) as min_price,
-    MAX(price_usd) as max_price
+    AVG(price_inr) as avg_price,
+    MIN(price_inr) as min_price,
+    MAX(price_inr) as max_price
 FROM crypto_prices
 WHERE crypto_id = 'bitcoin'
   AND extracted_at >= NOW() - INTERVAL '24 hours'
@@ -167,8 +167,8 @@ ORDER BY hour DESC;
 ### Market Cap Comparison
 ```sql
 SELECT crypto_name, 
-       market_cap_usd,
-       RANK() OVER (ORDER BY market_cap_usd DESC) as market_rank
+       market_cap_inr,
+       RANK() OVER (ORDER BY market_cap_inr DESC) as market_rank
 FROM crypto_prices
 WHERE extracted_at = (SELECT MAX(extracted_at) FROM crypto_prices);
 ```
