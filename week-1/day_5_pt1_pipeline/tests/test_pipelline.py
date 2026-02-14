@@ -8,7 +8,7 @@ from pipeline import transform_data
 
 def test_transform_returns_dataframe():
     data = {
-        "order_is": [1],
+        "order_id": [1],
         "order_date": ["2026-01-01"],
         "status": ["Completed"],
         "region": ["North"],
@@ -23,7 +23,7 @@ def test_transform_returns_dataframe():
 
 def test_filter_excludes_wrong_status():
     data = {
-        "order_is": [1],
+        "order_id": [1],
         "order_date": ["2026-01-01"],
         "status": ["Cancelled"],
         "region": ["North"],

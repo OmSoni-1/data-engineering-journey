@@ -106,7 +106,6 @@ Note: Reduced intensity due to fever. Focused on cleanup and structure. But I di
 
 -------------------------------------------------------------------------------------------
 
----
 
 ## Day 5 – Consolidation & Modular Architecture
 
@@ -142,5 +141,37 @@ Note: Reduced intensity due to fever. Focused on cleanup and structure. But I di
 
 ### Time Spent
 - ~1 hour consolidation session
+
+-------------------------------------------------------------------------------------------
+
+
+## Day 6 – Introduction to Unit Testing (pytest)
+
+### What I Built
+- Added pytest-based unit tests for the modular sales pipeline
+- Created `tests/test_pipeline.py`
+- Validated transformation logic and filtering behavior
+
+### Debugging & Fixes
+- Resolved import path issues for tests
+- Learned to run pytest using `python -m pytest`
+- Fixed column typo in test data (`order_is` → `order_id`)
+- Understood how missing schema causes aggregation failure
+
+### Concepts Reinforced
+- Unit testing fundamentals
+- Testing business logic independently of execution
+- DataFrame-based test case construction
+- Understanding implicit schema contracts
+- Reading and interpreting pytest stack traces
+
+### Why This Matters
+- Prevents regressions during refactors
+- Validates business logic deterministically
+- Increases confidence in code changes
+- Moves project toward production engineering standards
+
+### Time Spent
+- ~1 hour (late night light session)
 
 -------------------------------------------------------------------------------------------
