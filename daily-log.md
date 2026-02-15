@@ -222,3 +222,30 @@ Projects:
 Streak: 7 DAYS
 
 -------------------------------------------------------------------------------------------
+
+---
+
+## Day 8 – Data Modeling Realization
+
+### Key Insight
+- Understood difference between:
+  - Historical time-series storage
+  - Latest snapshot storage
+- Chose to keep timestamp-based uniqueness for analytical purposes
+- Planned to introduce separate snapshot table for UPSERT logic
+
+### Concept Learned
+- **pandas NaN vs PostgreSQL NULL conversion** (critical bug fix!)
+- Data modeling depends on business requirement
+- Idempotency vs upsert strategy serve different goals
+- Systematic debugging using logs
+- Production-ready insert patterns
+
+**Added Idempotency:**
+```sql
+INSERT INTO crypto_prices (...)
+VALUES (...)
+ON CONFLICT (crypto_id, extracted_at) DO NOTHING;
+```
+
+-------------------------------------------------------------------------------------------
