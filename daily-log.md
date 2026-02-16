@@ -249,3 +249,12 @@ ON CONFLICT (crypto_id, extracted_at) DO NOTHING;
 ```
 
 -------------------------------------------------------------------------------------------
+
+## Day 9 – Dual Storage Strategy
+
+- Extended load logic to support snapshot table
+- Maintained append-only history table
+- Implemented UPSERT-based latest table
+- Designed production-style dual-table architecture
+
+-------------------------------------------------------------------------------------------

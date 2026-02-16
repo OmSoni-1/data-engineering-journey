@@ -47,6 +47,26 @@ def load_to_postgres(df):
         ON CONFLICT (crypto_id, extracted_at)
         DO NOTHING;
         """
+
+        snapshot_query = """
+        INSERT INTO crypto_prices_latest (
+            crypto_id, crypto_name, price_inr, market_cap_inr, volume_24h_inr,
+            price_change_24h_pct, price_category, is_positive_change, extracted_at
+        )
+        VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)
+
+        ON CONFLICT (crypto_id)
+        DO UPDATE SET
+            crypto_name = EXCLUDED.crypto_name,
+            price_inr = EXCLUDED.price_inr,
+            market_cap_inr = EXCLUDED.market_cap_inr,
+            volume_24h_inr = EXCLUDED.volume_24h_inr,
+            price_change_24h_pct = EXCLUDED.price_change_24h_pct,
+            price_category = EXCLUDED.price_category,
+            is_positive_change = EXCLUDED.is_positive_change,
+            extracted_at = EXCLUDED.extracted_at,
+            updated_at = CURRENT_TIMESTAMP;
+        """
         
         # Track successes and failures
         records_inserted = 0
@@ -84,8 +104,21 @@ def load_to_postgres(df):
                     row['is_positive_change'],
                     row['extracted_at']
                 ))
+
                 if cursor.rowcount > 0:
                     records_inserted += 1
+
+                cursor.execute(snapshot_query, (
+                    row['crypto_id'],
+                    row['crypto_name'],
+                    row['price_inr'],
+                    row['market_cap_inr'],
+                    row['volume_24h_inr'],
+                    row['price_change_24h_pct'],
+                    row['price_category'],
+                    row['is_positive_change'],
+                    row['extracted_at']
+                ))
                 logger.info(f"✓ Inserted: {row['crypto_name']} (${row['price_inr']})")
                 
             except Error as e:
