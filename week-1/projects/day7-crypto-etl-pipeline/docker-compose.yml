@@ -30,7 +30,7 @@ services:
       DB_PASSWORD: postgres
       API_BASE_URL: https://api.coingecko.com/api/v3
     command: python run.py
-    restart: on-failure
+    restart: "no"
 
 volumes:
   postgres_data:

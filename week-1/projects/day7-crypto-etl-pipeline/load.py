@@ -36,6 +36,43 @@ def load_to_postgres(df):
         # Connect to database
         connection = get_db_connection()
         cursor = connection.cursor()
+
+        # Create tables if not exists (for containerized DB)
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS crypto_prices (
+            id SERIAL PRIMARY KEY,
+            crypto_id VARCHAR(50) NOT NULL,
+            crypto_name VARCHAR(100) NOT NULL,
+            price_inr DECIMAL(20,2),
+            market_cap_inr BIGINT,
+            volume_24h_inr BIGINT,
+            price_change_24h_pct DECIMAL(10,2),
+            price_category VARCHAR(20),
+            is_positive_change BOOLEAN,
+            extracted_at TIMESTAMP NOT NULL
+        );
+        """)
+
+        cursor.execute("""
+        CREATE UNIQUE INDEX IF NOT EXISTS unique_crypto_timestamp
+        ON crypto_prices (crypto_id, extracted_at);
+        """)
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS crypto_prices_latest (
+            crypto_id VARCHAR(50) PRIMARY KEY,
+            crypto_name VARCHAR(100),
+            price_inr DECIMAL(20,2),
+            market_cap_inr BIGINT,
+            volume_24h_inr BIGINT,
+            price_change_24h_pct DECIMAL(10,2),
+            price_category VARCHAR(20),
+            is_positive_change BOOLEAN,
+            extracted_at TIMESTAMP NOT NULL,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
         
         # Prepare insert query
         insert_query = """

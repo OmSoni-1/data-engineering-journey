@@ -308,3 +308,18 @@ Special thanks to:
 **Version:** 1.0.0  
 **Author:** Om Soni  
 **Portfolio Project:** Week 1 - Capstone
+
+## 🐳 Dockerized Deployment
+
+This project runs fully containerized using Docker and Docker Compose.
+
+Services:
+- PostgreSQL (containerized)
+- ETL service (Python container)
+
+Run:
+
+docker compose build
+docker compose up
+
+The pipeline auto-creates required tables on first run.
