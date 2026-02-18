@@ -258,3 +258,35 @@ ON CONFLICT (crypto_id, extracted_at) DO NOTHING;
 - Designed production-style dual-table architecture
 
 -------------------------------------------------------------------------------------------
+
+## Day 10 – Full Dockerization
+
+- Installed WSL + Docker Desktop
+- Created Dockerfile
+- Created docker-compose setup (ETL + PostgreSQL)
+- Implemented automatic table creation
+- Resolved restart loop issue
+- Handled API rate limiting during container restart
+- Successfully executed ETL inside Docker container
+
+Key Concept Learned:
+- Container networking
+- Self-initializing infrastructure
+- Distributed service debugging
+- Rate-limit side effects in restart loops
+
+-------------------------------------------------------------------------------------------
+
+## Day 11 – Batch Insert Optimization
+
+- Replaced row-by-row inserts with execute_batch
+- Reduced DB round trips
+- Added load phase timing
+- Improved scalability of ETL pipeline
+
+Concept Learned:
+- Network round trip cost in databases
+- Bulk insert optimization techniques
+- Scaling ingestion systems
+
+-------------------------------------------------------------------------------------------

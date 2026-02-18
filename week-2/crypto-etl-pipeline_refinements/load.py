@@ -5,6 +5,9 @@ from psycopg2.extras import execute_batch
 from logger import setup_logger
 from config import Config
 import pandas as pd
+import time
+
+start_time = time.time()
 
 logger = setup_logger('Load')
 
@@ -108,7 +111,6 @@ def load_to_postgres(df):
         
         # Track successes and failures
         records_inserted = 0
-        failed_records = []
         
         # ============================================================
         # KEY FIX: Replace pandas NaN with Python None (PostgreSQL NULL)
@@ -121,79 +123,43 @@ def load_to_postgres(df):
         # ============================================================
 
 
-        df_clean = df.where(pd.notna(df), None)       
-        
-        # Insert each record
-        for idx, row in df_clean.iterrows():
-            try:
-                # ========================================================
-                # DEBUG: Log what we're trying to insert
-                # ========================================================
-                logger.debug(f"Attempting to insert: {row['crypto_name']}")
-                logger.debug(f"  price_inr: {row['price_inr']} (type: {type(row['price_inr'])})")
-                logger.debug(f"  market_cap: {row['market_cap_inr']} (type: {type(row['market_cap_inr'])})")
-                
-                cursor.execute(insert_query, (
-                    row['crypto_id'],
-                    row['crypto_name'],
-                    row['price_inr'],
-                    row['market_cap_inr'],
-                    row['volume_24h_inr'],
-                    row['price_change_24h_pct'],
-                    row['price_category'],
-                    row['is_positive_change'],
-                    row['extracted_at']
-                ))
+        df_clean = df.where(pd.notna(df), None)
 
-                if cursor.rowcount > 0:
-                    records_inserted += 1
-
-                cursor.execute(snapshot_query, (
-                    row['crypto_id'],
-                    row['crypto_name'],
-                    row['price_inr'],
-                    row['market_cap_inr'],
-                    row['volume_24h_inr'],
-                    row['price_change_24h_pct'],
-                    row['price_category'],
-                    row['is_positive_change'],
-                    row['extracted_at']
-                ))
-                logger.info(f"✓ Inserted: {row['crypto_name']} (${row['price_inr']})")
-                
-            except Error as e:
-                failed_records.append({
-                    'crypto': row['crypto_name'],
-                    'error': str(e),
-                    'error_code': e.pgcode if hasattr(e, 'pgcode') else 'N/A'
-                })
-                logger.error(f"✗ FAILED to insert {row['crypto_name']}")
-                logger.error(f"   Error: {e}")
-                logger.error(f"   Error code: {e.pgcode if hasattr(e, 'pgcode') else 'N/A'}")
-                logger.error(f"   Data: price={row['price_inr']}, market_cap={row['market_cap_inr']}")
-                # Continue to try other records
-                continue
+        records = [
+            (
+                row['crypto_id'],
+                row['crypto_name'],
+                row['price_inr'],
+                row['market_cap_inr'],
+                row['volume_24h_inr'],
+                row['price_change_24h_pct'],
+                row['price_category'],
+                row['is_positive_change'],
+                row['extracted_at']
+            )
+            for _, row in df_clean.iterrows()
+        ]
         
-        # ============================================================
-        # Commit successful inserts
-        # ============================================================
-        if records_inserted > 0:
+        # Batch insert
+        try:
+            execute_batch(cursor, insert_query, records, page_size=100)
+
+            execute_batch(cursor, snapshot_query, records, page_size=100)
+
             connection.commit()
-            logger.info(f"✓ Successfully committed {records_inserted}/{len(df)} records")
-        else:
-            logger.error("No records were successfully inserted!")
+
+            records_inserted = len(records)
+
+
+            logger.info(f"✓ {len(records)} processed in batch.)")
+            
+        except Error as e:
             connection.rollback()
-        
-        # Report failures in detail
-        if failed_records:
-            logger.error(f"="*60)
-            logger.error(f"FAILED TO INSERT {len(failed_records)} RECORDS:")
-            logger.error(f"="*60)
-            for fail in failed_records:
-                logger.error(f"  Crypto: {fail['crypto']}")
-                logger.error(f"  Error: {fail['error']}")
-                logger.error(f"  Code: {fail['error_code']}")
-                logger.error(f"-"*60)
+            logger.error("Batch insert failed.")
+            logger.error(f"Error: {e}")
+            raise
+            # Continue to try other records
+            
         
         # Verify insert with detailed query
         cursor.execute("""
@@ -271,3 +237,6 @@ if __name__ == "__main__":
     
     load(df)
     print("\n✓ Load test complete!")
+
+    end_time = time.time()
+    logger.info(f"Load phase took {end_time - start_time: .4f} seconds")

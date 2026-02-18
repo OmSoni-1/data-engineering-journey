@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: crypto_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: crypto_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  etl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crypto_etl
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: crypto_tracker
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      API_BASE_URL: https://api.coingecko.com/api/v3
+    command: python run.py
+    restart: "no"
+
+volumes:
+  postgres_data:
