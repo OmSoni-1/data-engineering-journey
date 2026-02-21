@@ -290,3 +290,9 @@ Concept Learned:
 - Scaling ingestion systems
 
 -------------------------------------------------------------------------------------------
+
+## Day 14
+
+Practising what I have done so far. Making small refinements and learning the process better.
+
+-------------------------------------------------------------------------------------------
