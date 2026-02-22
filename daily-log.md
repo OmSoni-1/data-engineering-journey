@@ -296,3 +296,13 @@ Concept Learned:
 Practising what I have done so far. Making small refinements and learning the process better.
 
 -------------------------------------------------------------------------------------------
+
+## Day 15
+
+Worked on refining LinkedIn and Naukri. Practised Python today to fill in the gaps that I was having.
+
+Tomorrow's Goal:
+- Get started with the next step.
+- Will be learning basics of cloud or start Spark / Airflow.
+
+-------------------------------------------------------------------------------------------
