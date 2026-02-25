@@ -318,3 +318,9 @@ Basically nothing today.
 Python and Pandas practice on Leetcode.
 
 -------------------------------------------------------------------------------------------
+
+## Day 18
+
+Worked on SQL today, made logics and solved problems. Can be called progress, but not in Python.
+
+-------------------------------------------------------------------------------------------
