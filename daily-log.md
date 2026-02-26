@@ -324,3 +324,9 @@ Python and Pandas practice on Leetcode.
 Worked on SQL today, made logics and solved problems. Can be called progress, but not in Python.
 
 -------------------------------------------------------------------------------------------
+
+## Day 19
+
+Nothing Python wise today. SQL practice and work today as well.
+
+-------------------------------------------------------------------------------------------
