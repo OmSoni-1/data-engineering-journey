@@ -330,3 +330,8 @@ Worked on SQL today, made logics and solved problems. Can be called progress, bu
 Nothing Python wise today. SQL practice and work today as well.
 
 -------------------------------------------------------------------------------------------
+
+## Day 20
+
+Travelling today.
+-------------------------------------------------------------------------------------------
